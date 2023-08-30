@@ -1,0 +1,129 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "ecac053389c8ac0b312aa1e7a6c4555b",
+    "packages": [
+        {
+            "name": "cmb2/cmb2",
+            "version": "v2.10.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/CMB2/CMB2.git",
+                "reference": "4afc4bb7b92ab6d93aac2247c9a84af773e42532"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/CMB2/CMB2/zipball/4afc4bb7b92ab6d93aac2247c9a84af773e42532",
+                "reference": "4afc4bb7b92ab6d93aac2247c9a84af773e42532",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">5.2.4"
+            },
+            "require-dev": {
+                "apigen/apigen": "4.1.2",
+                "awesomemotive/am-cli-tools": ">=1.3.1",
+                "nette/utils": "2.5.3",
+                "phpunit/phpunit": "^6.5",
+                "yoast/phpunit-polyfills": "^1.0"
+            },
+            "suggest": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Justin Sternberg",
+                    "email": "justin@dsgnwrks.pro",
+                    "homepage": "https://dsgnwrks.pro",
+                    "role": "Developer"
+                },
+                {
+                    "name": "WebDevStudios",
+                    "email": "contact@webdevstudios.com",
+                    "homepage": "https://github.com/WebDevStudios",
+                    "role": "Developer"
+                }
+            ],
+            "description": "CMB2 is a metabox, custom fields, and forms library for WordPress that will blow your mind.",
+            "homepage": "https://github.com/CMB2/CMB2",
+            "keywords": [
+                "metabox",
+                "plugin",
+                "wordpress"
+            ],
+            "support": {
+                "issues": "https://github.com/CMB2/CMB2/issues",
+                "source": "http://wordpress.org/support/plugin/cmb2"
+            },
+            "time": "2022-02-22T14:15:16+00:00"
+        },
+        {
+            "name": "jcchavezs/cmb2-conditionals",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jcchavezs/cmb2-conditionals.git",
+                "reference": "6c8cafc3d1fdfd5780642cf696e4df120d540377"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jcchavezs/cmb2-conditionals/zipball/6c8cafc3d1fdfd5780642cf696e4df120d540377",
+                "reference": "6c8cafc3d1fdfd5780642cf696e4df120d540377",
+                "shasum": ""
+            },
+            "require": {
+                "cmb2/cmb2": "~v2.0",
+                "php": ">5.2.4"
+            },
+            "suggest": {
+                "composer/installers": "~1.0"
+            },
+            "default-branch": true,
+            "type": "wordpress-plugin",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "José Carlos Chávez",
+                    "email": "jcchavezs@gmail.com",
+                    "homepage": "https://github.com/jcchavezs",
+                    "role": "Developer"
+                }
+            ],
+            "description": "CMB2 Conditionals is a plugin for CMB2 which allows developers to relate fields so one of them could only appear when one other have an specific value or when is not empty.",
+            "homepage": "https://github.com/jcchavezs/cmb2-conditionals",
+            "keywords": [
+                "conditionals",
+                "metabox",
+                "plugin",
+                "wordpress"
+            ],
+            "support": {
+                "issues": "https://github.com/jcchavezs/cmb2-conditionals/issues",
+                "source": "https://github.com/jcchavezs/cmb2-conditionals/tree/master"
+            },
+            "time": "2019-04-24T12:14:30+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "jcchavezs/cmb2-conditionals": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
+}

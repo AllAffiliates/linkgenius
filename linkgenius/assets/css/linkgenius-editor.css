@@ -1,0 +1,39 @@
+.linkgenius-link {
+    text-decoration: underline;
+    color:blueviolet;
+}
+
+.linkgenius-preview {
+    align-items: center;
+}
+
+.linkgenius-list-sort {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
+
+.linkgenius-template-desc {
+    font-size: x-small;
+}
+
+.linkgenius-link-wrapper-hidden {
+    display: none;
+}
+
+.linkgenius-link-wrapper,
+.linkgenius-taxonomy-select
+{
+    border-left: 3px solid blueviolet;
+    padding: 1em;
+}
+
+.editor-styles-wrapper .linkgenius-link-wrapper h2,
+.editor-styles-wrapper .linkgenius-taxonomy-select h2 {
+    font-size: 1.5em;
+}
+
+.linkgenius-link-wrapper > div:not(:last-child),
+.linkgenius-taxonomy-select  > div:not(:last-child) {
+    margin-bottom: 1em;
+}

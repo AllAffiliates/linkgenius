@@ -1,0 +1,37 @@
+.linkgenius-tooltip {
+    position: relative;
+    display: inline-block;
+}
+  
+/* linkgenius-tooltip text */
+.linkgenius-tooltip .linkgenius-tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    width: 120px;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+    position: absolute;
+}
+
+.linkgenius-tooltip .linkgenius-tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 100%; /* At the bottom of the linkgenius-tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+  }
+
+/* Show the linkgenius-tooltip text when you mouse over the linkgenius-tooltip container */
+.linkgenius-tooltip:hover .linkgenius-tooltiptext {
+    visibility: visible;
+}

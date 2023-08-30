@@ -1,0 +1,13 @@
+.linkgenius-pro > div > :not(:first-child) {
+    pointer-events:none;
+    opacity: 0.6;
+}
+
+.cmb2_h2 {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+input.linkgenius-copy-shortcode {
+    background-color: #ADFFAD;
+}

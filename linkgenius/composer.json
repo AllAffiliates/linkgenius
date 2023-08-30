@@ -1,0 +1,15 @@
+{
+    "name": "all-affiliates.com/linkgenius",
+    "description": "wordpress plugin",
+    "type": "project",
+    "license": "gpl",
+    "autoload": {
+        "psr-4": {
+            "LinkGenius\\": "includes/"
+        }
+    },
+    "require": {
+        "cmb2/cmb2": "^2.10",
+        "jcchavezs/cmb2-conditionals": "dev-master"
+    }
+}
