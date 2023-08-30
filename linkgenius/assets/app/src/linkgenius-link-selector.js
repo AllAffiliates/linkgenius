@@ -138,8 +138,8 @@ async function performSearch(query) {
             keyword: query
         })
     })
-    if(response.status === 'success') {
-        const links = response.links
+    if(response.success) {
+        const links = response.data
         return links
     }
     else {
@@ -158,8 +158,8 @@ export async function getLink(id) {
       linkgenius_id: id
     })
   })
-  if(response.status === 'success') {
-    const link = response.link
+  if(response.success) {
+    const link = response.data
     return link
   }
   else {
@@ -174,8 +174,8 @@ async function getLinkByUrl(url) {
       linkgenius_url: url
     })
   })
-  if(response.status === 'success') {
-    const link = response.link
+  if(response.success) {
+    const link = response.data
     return link
   }
   else {

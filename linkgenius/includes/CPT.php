@@ -167,7 +167,7 @@ class CPT {
         if ($column_name == 'link') {
             $link = get_post_meta($post_id, 'general_target_url', true);
             if ($link) {
-                echo '<a href="' . $link . '" target="_blank">' . $link . '</a>';
+                echo '<a href="' . esc_url($link) . '" target="_blank">' . esc_url($link) . '</a>';
             }
         }
     }

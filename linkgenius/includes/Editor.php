@@ -65,42 +65,45 @@ class Editor {
     //
     public function get_linkgenius_link() {
         $post = null;
-        if ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX )
-            $response = array( 'status' => 'fail' , 'error_msg' => __( 'Invalid AJAX call') );
+        if (! defined('DOING_AJAX') || ! DOING_AJAX) {
+            wp_send_json_error(__('Invalid AJAX call'));
+        }
         elseif( isset( $_GET[ 'linkgenius_id' ] ) ){
             $id = intval(wp_unslash($_GET['linkgenius_id']));
             $post = get_post($id);
             if($post === null || $post->post_type != CPT::TYPE_LINK) {
-                $response = array( 'status' => 'fail' , 'error_msg' => __( 'Invalid Id' ) );
+                wp_send_json_error( __( 'Invalid Id' ) );
             }
         }
         elseif( isset( $_GET['linkgenius_url'])) {
             $post = get_post(url_to_postid(esc_url_raw($_GET['linkgenius_url'])));
             if($post === null || $post->post_type != CPT::TYPE_LINK) {
-                $response = array( 'status' => 'fail' , 'error_msg' => __( 'Invalid URL' ) );
+                wp_send_json_error( __( 'Invalid URL' ) );
             }
         }
         else {
-            $response = array( 'status' => 'fail' , 'error_msg' => __('Missing required post data', 'linkgenius') );
+            wp_send_json_error( __( 'Missing required post data' ) );
         }
-        if(empty($response) && $post != null) {
-            $response = array( 'status' => 'success', 'link' => array(
-                "id" => $post->ID,
-                "title" => $post->post_title,
-                "url" => get_permalink($post),
-                "target_url" => get_post_meta($post->ID, 'general_target_url', true)
-            ));
+
+
+        if($post == null || $post->post_type != CPT::TYPE_LINK) {
+            wp_send_json_error( __( 'Invalid Post Parameters' ) );
         }
-        @header( 'Content-Type: application/json; charset=' . get_option( 'blog_charset' ) );
-        echo wp_json_encode( $response );
-        wp_die();
+        wp_send_json_success(array(
+            "id" => $post->ID,
+            "title" => $post->post_title,
+            "url" => get_permalink($post),
+            "target_url" => esc_url(get_post_meta($post->ID, 'general_target_url', true))
+        ));
     }
 
     public function search_linkgenius_links() {
-        if ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX )
-            $response = array( 'status' => 'fail' , 'error_msg' => __( 'Invalid AJAX call') );
-        elseif ( ! isset( $_GET[ 'keyword' ] ) )
-            $response = array( 'status' => 'fail' , 'error_msg' => __( 'Missing required post data' ) );
+        if ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ){
+            wp_send_json_error(__('Invalid AJAX call'));
+        }
+        elseif ( ! isset( $_GET[ 'keyword' ] ) ) {
+            wp_send_json_error( __( 'Missing required post data' ));
+        }
         else {
             $keyword = sanitize_text_field( wp_unslash($_GET['keyword'] ));
             $args = array(
@@ -121,39 +124,37 @@ class Editor {
                 'meta_key' => 'general_target_url',
             );
             $query = new WP_Query( $args );
+            // @header( 'Content-Type: application/json; charset=' . get_option( 'blog_charset' ) );
+        
             $links = array_map(fn($post) => [
                 "id" => $post->ID,
                 "title" => $post->post_title,
                 "url" => get_permalink($post),
-                'target_url' => get_post_meta($post->ID, 'general_target_url', true)
+                'target_url' => esc_url(get_post_meta($post->ID, 'general_target_url', true))
             ], $query->posts);
-            // global $wpdb;
-            // $q = $wpdb->last_query;
-            //var_dump($q);
-            $response = array( 'status' => 'success', 'links' => $links);
+            wp_send_json_success( $links );
         }
-        @header( 'Content-Type: application/json; charset=' . get_option( 'blog_charset' ) );
-        echo wp_json_encode( $response );
-        wp_die();
     }
 
     function preview_linkgenius_taxonomy() {
-        if ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX )
-            $response = array( 'status' => 'fail' , 'error_msg' => __( 'Invalid AJAX call') );
-        elseif ( ! isset( $_GET[ 'taxonomy'] ) || !isset($_GET['item_slug']) || !isset($_GET['template']) || !isset($_GET['sort']))
-            $response = array( 'status' => 'fail' , 'error_msg' => __( 'Missing required post data' ) );
-        elseif ( $_GET['taxonomy'] !== 'category' && $_GET['taxonomy'] !== 'tag' )
-            $response = array( 'status' => 'fail' , 'error_msg' => __( 'Invalid taxonomy' ) );
-        elseif ( $_GET['sort'] !== 'order' && $_GET['sort'] !== 'title') 
-            $response = array( 'status' => 'fail' , 'error_msg' => __( 'Invalid sort' ) );
-        else {
-            $shortcode = "[linkgenius-list ".$_GET['taxonomy']."=".sanitize_title($_GET['item_slug'])." sort=".$_GET['sort']."]".$_GET['template']."[/linkgenius-list]";
-            $preview = do_shortcode($shortcode);
-            $response = array( 'status' => 'success', 'preview' => $preview);
+        if ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) {
+            wp_send_json_error(__('Invalid AJAX call'));
         }
-        @header( 'Content-Type: application/json; charset=' . get_option( 'blog_charset' ) );
-        echo wp_json_encode( $response );
-        wp_die();
+        elseif ( ! isset( $_GET[ 'taxonomy'] ) || !isset($_GET['item_slug']) || !isset($_GET['template']) || !isset($_GET['sort'])) {
+            wp_send_json_error( __( 'Missing required post data' ));
+        }
+        elseif ( $_GET['taxonomy'] !== 'category' && $_GET['taxonomy'] !== 'tag' ) {
+            wp_send_json_error( __( 'Invalid taxonomy' ) );
+        }
+        elseif ( $_GET['sort'] !== 'order' && $_GET['sort'] !== 'title') {
+            wp_send_json_error( __( 'Invalid sort' ) );
+        }
+        else {
+            $shortcode = "[linkgenius-list ".$_GET['taxonomy']."=".sanitize_title($_GET['item_slug'])." sort=".$_GET['sort']."]".wp_kses_post($_GET['template'])."[/linkgenius-list]";
+            $preview = do_shortcode($shortcode);
+            // @header( 'Content-Type: application/json; charset=' . get_option( 'blog_charset' ) );
+            wp_send_json_success( $preview);
+        }
     }
 
     //

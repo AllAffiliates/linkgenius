@@ -1,10 +1,10 @@
 === LinkGenius ===
-Contributors: allaffiliates
-Tags: affiliate, links, management, cloaking, tracking, redirection, affiliate link management,
+Contributors: all-affiliates
+Tags: affiliate, links, management, cloaking, tracking, redirection, affiliate link management, affiliate disclosure
 Requires at least: 6.2
-Tested up to: 6.2
+Tested up to: 6.3
 Requires PHP: 8.0
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPL2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 

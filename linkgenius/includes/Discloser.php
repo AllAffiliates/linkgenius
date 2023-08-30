@@ -20,20 +20,12 @@ class Discloser {
         });
 
         // replace placeholders
-        ob_start();
-        add_action('shutdown', function() {
-            $final = '';
-
-            // We'll need to get the number of ob levels we're in, so that we can iterate over each, collecting
-            // that buffer's output into the final output.
-            $levels = ob_get_level();
-
-            for ($i = 0; $i < $levels; $i++) {
-                $final .= ob_get_clean();
-            }
+        ob_start(function($buffer) {
             $disclosure_text = $this->has_disclosure ? $this->get_disclosure("shortcode") : "";
-            $final = str_replace("<linkgenius_disclosure_placeholder>", $disclosure_text, $final);
-            echo $final;
+            return $buffer = str_replace("<linkgenius_disclosure_placeholder>", wp_kses_post($disclosure_text), $buffer);
+        });
+        add_action('shutdown', function() {
+            ob_end_flush();
         }, 0);
     }
 

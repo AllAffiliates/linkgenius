@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '2c781f3458a2163eefb70a5a5e2d611567aac4c6',
+        'reference' => '2a6751dd9faefb765f0b0c2225d10d3b80a9fa3d',
         'name' => 'all-affiliates.com/linkgenius',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '2c781f3458a2163eefb70a5a5e2d611567aac4c6',
+            'reference' => '2a6751dd9faefb765f0b0c2225d10d3b80a9fa3d',
             'dev_requirement' => false,
         ),
         'cmb2/cmb2' => array(

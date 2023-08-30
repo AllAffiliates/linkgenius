@@ -95,8 +95,8 @@ class TaxonomyFetcher {
             const per_page = 100;
             let total = [];
             for(let page = 1; page < 100; page++) {
-                const url = wpApiSettings.root+'wp/v2/linkgenius_'+taxonomy+(!wpApiSettings.root.includes("?")?"?":"&")+"per_page="+per_page+"&page="+page
-                const response = await fetch(url);
+                const url = wpApiSettings.root+"wp/v2/linkgenius_"+taxonomy+(wpApiSettings.root.includes("?")?"&":"?")+"per_page="+per_page+"&page="+page
+                const response = await fetch(url)
                 if(response.status !== 200)
                     break;
                 const data = await response.json()
@@ -111,8 +111,6 @@ class TaxonomyFetcher {
         };
         this.promise = fetchData() 
     }
-
-
 }
 async function getPreview(taxonomy, item_slug, sort, template) {
     const response = await apiFetch({
@@ -124,8 +122,8 @@ async function getPreview(taxonomy, item_slug, sort, template) {
             template: template
         })
       })
-      if(response.status === 'success') {
-        const preview = response.preview
+      if(response.success) {
+        const preview = response.data
         return preview !== '' ? preview : __('No LinkGenius links found', 'linkgenius');
       }
       else {
